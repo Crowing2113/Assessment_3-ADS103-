@@ -1,4 +1,6 @@
 #pragma once
+#include <queue>
+#include <fstream>
 #include "NumberNode.h"
 
 using namespace std;
@@ -9,7 +11,7 @@ public:
 	bool displayRotations = true;
 
 	NumberNode* root;
-	
+
 	//might not use
 	NumberNode* search(int numberSearch, bool showSearchPath);
 
@@ -24,11 +26,17 @@ public:
 	NumberNode* LLrotation(NumberNode* parent);
 	NumberNode* LRrotation(NumberNode* parent);
 	NumberNode* RLrotation(NumberNode* parent);
-	
+
 	//Balance
 	NumberNode* balance(NumberNode* parent);
 
 	//Insert
-	NumberNode* Insert(NumberNode* parent,NumberNode* newNum);
+	NumberNode* InsertAVL(NumberNode* parent, NumberNode* newNum);
+
+	void insert(NumberNode* newNum);
+
+	void printLevel(NumberNode* root, int level, ofstream& writeFile);
+	//Breadth-First Traversal
+	void bft(NumberNode* root);
 };
 

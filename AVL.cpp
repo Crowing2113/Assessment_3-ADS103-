@@ -1,5 +1,11 @@
 #include "AVL.h"
 
+NumberNode* AVL::search(int numberSearch, bool showSearchPath)
+{
+	return nullptr;
+}
+
+//get the height of the sub tree
 int AVL::height(NumberNode* node)
 {
 	int h = 0;
@@ -29,6 +35,7 @@ int AVL::difference(NumberNode* node)
 	return balanceFactor;
 }
 
+//right right rotation for the tree if right branch and right child is heavy
 NumberNode* AVL::RRrotation(NumberNode* parent)
 {
 	NumberNode* temp = parent->rightChild;
@@ -39,7 +46,7 @@ NumberNode* AVL::RRrotation(NumberNode* parent)
 
 	return temp;
 }
-
+//left left rotations for the tree if left branch and left child is heavy
 NumberNode* AVL::LLrotation(NumberNode* parent)
 {
 	NumberNode* temp = parent->leftChild;
@@ -51,6 +58,7 @@ NumberNode* AVL::LLrotation(NumberNode* parent)
 	return temp;
 }
 
+//left right rotation for the tree if left branch and right child is heavy
 NumberNode* AVL::LRrotation(NumberNode* parent)
 {
 	NumberNode* temp = parent->leftChild;
@@ -60,6 +68,7 @@ NumberNode* AVL::LRrotation(NumberNode* parent)
 	return LLrotation(parent);
 }
 
+//right left rotation for the tree if left branch and right is heavy
 NumberNode* AVL::RLrotation(NumberNode* parent)
 {
 	NumberNode* temp = parent->rightChild;
@@ -101,26 +110,65 @@ NumberNode* AVL::balance(NumberNode* parent)
 	return parent;
 }
 
-//insert a number then display the tree
-NumberNode* AVL::Insert(NumberNode* parent, NumberNode* newNum)
+//insert a number into the tree
+NumberNode* AVL::InsertAVL(NumberNode* parent, NumberNode* newNum)
 {
 	//if sub tree is empty newNumber becomes the parent
 	if (parent == NULL) {
 		parent = newNum;
 		return parent;
 	}
-
 	//parent is not null so there isn't an empty space yet
 	//go down left or right
 	if (newNum->number < parent->number) {
-		parent->leftChild = Insert(parent->leftChild, newNum);
+		parent->leftChild = InsertAVL(parent->leftChild, newNum);
 		parent = balance(parent);
 	}
 	else {
-		parent->rightChild = Insert(parent->rightChild, newNum);
+		parent->rightChild = InsertAVL(parent->rightChild, newNum);
 		parent = balance(parent);
 	}
-	//TODO: run a Breadth-First Traversal and write the levels out in a txt file
-	
 	return parent;
 }
+
+//insert new number into tree by calling insert AVL function
+void AVL::insert(NumberNode* newNum)
+{
+	//calls insertAVL which returns a new root for the tree
+	root = InsertAVL(root, newNum);
+}
+
+//traverses the tree in a level order and writes them to file
+void AVL::printLevel(NumberNode* root, int level, ofstream& writeFile)
+{
+	//if root is null return
+	if (root == NULL)
+		return;
+	//if level is 0 it's the root
+	if (level == 0)
+		writeFile << " " << root->number;
+	//if level is greater than 0 go down next level by calling this function and using left child as root and level - 1, do same for right child
+	if (level > 0) {
+		printLevel(root->leftChild, level - 1, writeFile);
+		printLevel(root->rightChild, level - 1, writeFile);
+	}
+}
+
+//breadth-first traversal
+//traverse through the tree by levels starting at the root
+void AVL::bft(NumberNode* root)
+{
+	//get height of the tree
+	int h = height(root);
+	ofstream writeFile;
+	writeFile.open("output-q1a2.txt", ios_base::ate);
+
+	//for loop runs through thew tree and displays each level
+	for (int i = 0; i < h; i++) {
+		writeFile << i << ":";
+		//calls the print level function
+		printLevel(root, i, writeFile);
+		writeFile << endl;
+	}
+}
+
