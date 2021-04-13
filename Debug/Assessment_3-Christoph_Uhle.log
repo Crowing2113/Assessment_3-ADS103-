@@ -1,0 +1,6 @@
+﻿  AVL.cpp
+  main.cpp
+A:\_UNI\ADS103\_Assignments\Assessment 3\Assessment_3-Christoph_Uhle\main.cpp(6,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  NumberNode.cpp
+  Generating Code...
+  Assessment_3-Christoph_Uhle.vcxproj -> A:\_UNI\ADS103\_Assignments\Assessment 3\Assessment_3-Christoph_Uhle\Debug\Assessment_3-Christoph_Uhle.exe
