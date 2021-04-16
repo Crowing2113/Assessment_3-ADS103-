@@ -140,11 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AVL.cpp" />
+    <ClCompile Include="BinaryMaxHeap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NumberNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVL.h" />
+    <ClInclude Include="BinaryMaxHeap.h" />
     <ClInclude Include="NumberNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

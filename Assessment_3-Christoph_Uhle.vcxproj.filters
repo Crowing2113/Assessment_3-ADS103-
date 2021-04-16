@@ -24,12 +24,18 @@
     <ClCompile Include="AVL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BinaryMaxHeap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NumberNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AVL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryMaxHeap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
