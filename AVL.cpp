@@ -134,7 +134,7 @@ NumberNode* AVL::InsertAVL(NumberNode* parent, NumberNode* newNum)
 //insert new number into tree by calling insert AVL function
 void AVL::insert(NumberNode* newNum)
 {
-	//calls insertAVL which returns a new root for the tree
+	//calls insertAVL which returns a new node for the tree
 	root = InsertAVL(root, newNum);
 }
 

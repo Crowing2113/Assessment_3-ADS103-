@@ -1,3 +1,5 @@
+//
+
 #include "BinaryMaxHeap.h"
 //get the left child's index
 int BinaryMaxHeap::leftChildIndex(int parent)

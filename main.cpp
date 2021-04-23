@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void ErrorRep(int err, int numberOfNums) {
+void ErrorRep(int err, int numberOfNums = 0) {
 	switch (err) {
 	case 0://when end of file is reached before the loop has reached numberOfNums, means there are less numbers than given
 		cout << "ERROR:\n--There are less than " << numberOfNums << " numbers in the file.\nPlease fix." << endl;
@@ -19,9 +19,21 @@ void ErrorRep(int err, int numberOfNums) {
 		cout << "ERROR:\n--There are more than " << numberOfNums << " numbers in the file.\nPlease fix." << endl;
 		cout << "Closing..." << endl;
 		break;
+	case 2://when the input file does not exist
+		cout << "ERROR:\n--File does not exist. Please create Input file" << endl;;
+		break;
 	}
-
 }
+//Checks if the input file is open
+//if the file doesn't exist this should exit the program
+void CheckFile(ifstream* readFile) {
+	if (!readFile->is_open()) {
+		ErrorRep(2);
+		system("pause");
+		exit(0);
+	}
+}
+
 void Question1() {
 	AVL avl;
 	ifstream readFile;
@@ -29,6 +41,7 @@ void Question1() {
 	int numberOfNums;
 
 	readFile.open("input-q1a2.txt");
+	CheckFile(&readFile);
 	readFile >> numberOfNums;
 
 	//loop as many times as the amount of numbers that are being inserted
@@ -63,7 +76,7 @@ void Question2() {
 	//open both files since we'll be writing to the the output file and reading from the input file in the same loop
 	readFile.open("input-q2a2.txt");
 	writeFile.open("output-q2a2.txt");
-
+	CheckFile(&readFile);
 	readFile >> numberOfNums;
 	//run for as many times as given in the first number in the file
 	for (int i = 0; i < numberOfNums; i++) {
